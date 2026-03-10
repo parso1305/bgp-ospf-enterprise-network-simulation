@@ -1,4 +1,4 @@
-# Autonomous System Network Simulation (OSPF + BGP)
+
 
 ## Problem
 Large scale networks are divided into **Autonomous Systems (AS)** to maintain scalable routing and better network management.
@@ -89,16 +89,6 @@ Connectivity between networks can be verified using:
 ```bash
 ping <destination-ip>
 ```
-
----
-
-## Demo / Screenshots
-
-Network topology used in the simulation:
-
-![Network Topology](topology/network-topology.png)
-
----
 
 ## Future Improvements
 
