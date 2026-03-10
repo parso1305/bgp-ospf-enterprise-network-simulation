@@ -1,0 +1,40 @@
+#############################################
+# BGP CONFIGURATION
+# Used for routing between Autonomous Systems
+#############################################
+
+enable
+configure terminal
+
+
+#############################################
+# START BGP PROCESS
+#############################################
+
+router bgp 65001
+
+# Define BGP neighbor (external AS)
+neighbor 200.0.0.1 remote-as 65002
+
+
+#############################################
+# ADVERTISE INTERNAL NETWORK
+#############################################
+
+network 192.168.10.0 mask 255.255.255.0
+
+
+#############################################
+# DEFAULT ROUTE TO ISP
+#############################################
+
+ip route 0.0.0.0 0.0.0.0 200.0.0.1
+
+
+#############################################
+# VERIFICATION COMMANDS
+#############################################
+
+show ip bgp summary
+show ip bgp
+show ip route

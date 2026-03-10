@@ -1,0 +1,46 @@
+#############################################
+# OSPF CONFIGURATION
+# Internal routing protocol for company routers
+#############################################
+
+enable
+configure terminal
+
+
+#############################################
+# START OSPF PROCESS
+#############################################
+
+router ospf 1
+
+# Assign router ID (unique identifier for router)
+router-id 1.1.1.1
+
+
+#############################################
+# ADVERTISE INTERNAL NETWORKS
+# Wildcard mask 0.0.0.3 = /30 point-to-point links
+#############################################
+
+network 10.0.0.0 0.0.0.3 area 0
+network 10.0.0.4 0.0.0.3 area 0
+network 10.0.0.8 0.0.0.3 area 0
+
+
+#############################################
+# DISTRIBUTE DEFAULT ROUTE
+# Allows internal routers to reach external networks
+#############################################
+
+default-information originate
+
+exit
+
+
+#############################################
+# OSPF VERIFICATION
+#############################################
+
+show ip ospf neighbor
+show ip route ospf
+show ip ospf database

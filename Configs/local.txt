@@ -1,0 +1,56 @@
+#############################################
+# LOCAL ROUTER CONFIGURATION
+# Basic setup for internal LAN connectivity
+#############################################
+
+# Enter privileged mode
+enable
+
+# Enter global configuration mode
+configure terminal
+
+
+#############################################
+# LOOPBACK INTERFACE (Used for router ID or testing)
+#############################################
+
+interface loopback0
+ ip address 172.168.0.5 255.255.255.255
+exit
+
+
+#############################################
+# LAN INTERFACE CONFIGURATION
+# Connects router to internal switch/network
+#############################################
+
+interface gigabitEthernet0/0
+ ip address 192.168.2.1 255.255.255.0
+ no shutdown
+exit
+
+
+#############################################
+# DHCP CONFIGURATION
+# Automatically assigns IP addresses to hosts
+#############################################
+
+# Reserve router addresses so DHCP does not assign them
+ip dhcp excluded-address 192.168.2.1 192.168.2.20
+
+# Create DHCP pool
+ip dhcp pool BLDG2
+
+ network 192.168.2.0 255.255.255.0
+ default-router 192.168.2.1
+ dns-server 8.8.8.8
+
+exit
+
+
+#############################################
+# BASIC VERIFICATION
+#############################################
+
+show ip interface brief
+show running-config
